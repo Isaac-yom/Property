@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Str;
 
 class Property extends Model
 {
@@ -19,5 +20,11 @@ class Property extends Model
         'postal_code',
         'sold',
     ];
+
+    public function getSlug(): string
+    {
+        return Str::slug($this->title);
+    }
+
 
 }
