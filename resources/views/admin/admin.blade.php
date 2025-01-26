@@ -8,6 +8,8 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
 
     <title>@yield('title') | Administration</title>
+
+   
 </head>
 <body>
     
@@ -29,6 +31,21 @@
                     <a class="nav-link active" href="{{ route('admin.option.index') }}" @class(['nav-link', 'active' => str_contains($route, 'option.')])>Gérer les options</a>
                 </li>
             </ul>
+
+            <div class="ms-auto">
+                @auth
+                    <ul class="navbar">
+                        <li class="nav-item">
+                            <form method="post" action="{{ route('logout') }}">
+                                @csrf
+                                @method('delete')
+                                <button style="color: white;" class="nav-link">Se déconnecter</button>
+                            </form>
+                        </li>
+                    </ul>
+                @endauth    
+            </div>
+
         </div>
     </div>
     </nav>
